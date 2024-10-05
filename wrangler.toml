@@ -1,6 +1,6 @@
 #:schema node_modules/wrangler/config-schema.json
 name = "move-bot"
-main = "src/index.js"
+main = "src/server.js"
 compatibility_date = "2024-10-04"
 compatibility_flags = ["nodejs_compat"]
 
