@@ -3,17 +3,22 @@
   "author": "Beemer",
   "version": "0.0.0",
   "type": "module",
+  "main": "src/server.js",
   "private": true,
   "scripts": {
     "deploy": "wrangler deploy",
-		"ngrok": "ngrok http 8787",
+    "register": "node --env-file=.env src/register.js",
+    "ngrok": "ngrok http 8787",
     "dev": "wrangler dev",
     "start": "wrangler dev",
-    "test": "vitest"
+    "test": "c8 mocha test"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.2",
+    "c8": "^10.1.2",
+    "mocha": "^10.7.3",
     "node-fetch": "^3.3.2",
+    "sinon": "^19.0.2",
     "vitest": "2.0.5",
     "wrangler": "^3.60.3"
   },

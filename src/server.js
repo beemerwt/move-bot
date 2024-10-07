@@ -8,7 +8,7 @@ import {
   InteractionType,
   verifyKey,
 } from 'discord-interactions';
-import { MOVE_COMMAND } from './commands.js';
+import { MOVE_ALL_COMMAND, MOVE_COMMAND } from './commands.js';
 import { InteractionResponseFlags } from 'discord-interactions';
 
 class JsonResponse extends Response {
@@ -53,6 +53,10 @@ router.post('/', async (request, env) => {
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     // Most user commands will come as `APPLICATION_COMMAND`.
     switch (interaction.data.name.toLowerCase()) {
+			case MOVE_COMMAND.name.toLowerCase():
+				console.log("Move command called");
+				return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
+			case MOVE_ALL_COMMAND.name.toLowerCase():
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
     }
