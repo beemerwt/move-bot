@@ -3,13 +3,8 @@
  */
 
 import { AutoRouter } from 'itty-router';
-import {
-  InteractionResponseType,
-  InteractionType,
-  verifyKey,
-} from 'discord-interactions';
+import { InteractionResponseType, InteractionType, verifyKey } from 'discord-interactions';
 import { MOVE_ALL_COMMAND, MOVE_COMMAND } from './commands.js';
-import { InteractionResponseFlags } from 'discord-interactions';
 
 class JsonResponse extends Response {
   constructor(body, init) {
@@ -39,8 +34,7 @@ router.get('/', (request, env) => {
  */
 router.post('/', async (request, env) => {
   const { isValid, interaction } = await server.verifyDiscordRequest(request, env);
-  if (!isValid || !interaction)
-    return new Response('Bad request signature.', { status: 401 });
+  if (!isValid || !interaction) return new Response('Bad request signature.', { status: 401 });
 
   if (interaction.type === InteractionType.PING) {
     // The `PING` message is used during the initial webhook handshake, and is
@@ -53,10 +47,10 @@ router.post('/', async (request, env) => {
   if (interaction.type === InteractionType.APPLICATION_COMMAND) {
     // Most user commands will come as `APPLICATION_COMMAND`.
     switch (interaction.data.name.toLowerCase()) {
-			case MOVE_COMMAND.name.toLowerCase():
-				console.log("Move command called");
-				return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
-			case MOVE_ALL_COMMAND.name.toLowerCase():
+      case MOVE_COMMAND.name.toLowerCase():
+        console.log('Move command called');
+        return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
+      case MOVE_ALL_COMMAND.name.toLowerCase():
       default:
         return new JsonResponse({ error: 'Unknown Type' }, { status: 400 });
     }
@@ -71,10 +65,7 @@ async function verifyDiscordRequest(request, env) {
   const signature = request.headers.get('x-signature-ed25519');
   const timestamp = request.headers.get('x-signature-timestamp');
   const body = await request.text();
-  const isValidRequest =
-    signature &&
-    timestamp &&
-    (await verifyKey(body, signature, timestamp, env.DISCORD_PUBLIC_KEY));
+  const isValidRequest = signature && timestamp && (await verifyKey(body, signature, timestamp, env.DISCORD_PUBLIC_KEY));
   if (!isValidRequest) {
     return { isValid: false };
   }

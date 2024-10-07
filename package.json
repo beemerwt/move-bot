@@ -10,14 +10,20 @@
     "register": "node --env-file=.env src/register.js",
     "ngrok": "ngrok http 8787",
     "dev": "wrangler dev",
+    "fix": "eslint --fix **/*.js",
+    "lint": "eslint **/*.js",
     "start": "wrangler dev",
     "test": "c8 mocha test"
   },
   "devDependencies": {
     "@cloudflare/vitest-pool-workers": "^0.5.2",
+    "@eslint/js": "^9.12.0",
     "c8": "^10.1.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.2.1",
     "mocha": "^10.7.3",
     "node-fetch": "^3.3.2",
+    "prettier": "3.3.3",
     "sinon": "^19.0.2",
     "vitest": "2.0.5",
     "wrangler": "^3.60.3"

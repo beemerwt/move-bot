@@ -1,5 +1,5 @@
-import { MOVE_COMMAND, MOVE_ALL_COMMAND } from "./commands.js";
-import fetch from "node-fetch";
+import { MOVE_COMMAND, MOVE_ALL_COMMAND } from './commands.js';
+import fetch from 'node-fetch';
 
 const token = process.env.DISCORD_TOKEN;
 const applicationId = process.env.DISCORD_APPLICATION_ID;
@@ -9,9 +9,7 @@ if (!token) {
 }
 
 if (!applicationId) {
-  throw new Error(
-    'The DISCORD_APPLICATION_ID environment variable is required.'
-  );
+  throw new Error('The DISCORD_APPLICATION_ID environment variable is required.');
 }
 
 async function registerGlobalCommands() {
