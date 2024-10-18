@@ -1,4 +1,4 @@
-import { MOVE_COMMAND, MOVE_ALL_COMMAND, LIST_COMMAND } from './commands.js';
+import { MOVE_COMMAND, LIST_COMMAND } from './commands.js';
 import fetch from 'node-fetch';
 
 const token = process.env.DISCORD_TOKEN;
@@ -35,7 +35,6 @@ async function registerCommands(url) {
     method: 'PUT',
     body: JSON.stringify([
 			parseCommand(MOVE_COMMAND),
-			parseCommand(MOVE_ALL_COMMAND),
 			parseCommand(LIST_COMMAND)
 		]),
   });
