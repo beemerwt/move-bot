@@ -1,4 +1,4 @@
-import { MOVE_COMMAND, MOVE_ALL_COMMAND } from './commands.js';
+import { MOVE_COMMAND, MOVE_ALL_COMMAND, LIST_COMMAND } from './commands.js';
 import fetch from 'node-fetch';
 
 const token = process.env.DISCORD_TOKEN;
@@ -17,6 +17,15 @@ async function registerGlobalCommands() {
   await registerCommands(url);
 }
 
+function parseCommand(command) {
+	return {
+		name: command.name,
+		description: command.description,
+		default_member_permissions: command.default_member_permissions,
+		options: command.options,
+	};
+}
+
 async function registerCommands(url) {
   const response = await fetch(url, {
     headers: {
@@ -24,7 +33,11 @@ async function registerCommands(url) {
       Authorization: `Bot ${token}`,
     },
     method: 'PUT',
-    body: JSON.stringify([MOVE_COMMAND, MOVE_ALL_COMMAND]),
+    body: JSON.stringify([
+			parseCommand(MOVE_COMMAND),
+			parseCommand(MOVE_ALL_COMMAND),
+			parseCommand(LIST_COMMAND)
+		]),
   });
 
   if (response.ok) {

@@ -8,7 +8,8 @@
   "scripts": {
     "publish": "wrangler deploy",
     "register": "node --env-file=.env src/register.js",
-    "ngrok": "ngrok http 8787",
+    "debug": "wrangler tail",
+    "ngrok": "ngrok http https://localhost:8787",
     "dev": "wrangler dev",
     "fix": "eslint --fix **/*.js",
     "lint": "eslint **/*.js",
@@ -19,6 +20,7 @@
     "@cloudflare/vitest-pool-workers": "^0.5.2",
     "@eslint/js": "^9.12.0",
     "c8": "^10.1.2",
+    "discord-api-types": "^0.37.101",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "mocha": "^10.7.3",
@@ -30,6 +32,7 @@
     "wrangler": "^3.60.3"
   },
   "dependencies": {
+    "axios": "^1.7.7",
     "discord-interactions": "^4.1.0",
     "itty-router": "^5.0.18"
   }
